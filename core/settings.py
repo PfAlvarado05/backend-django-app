@@ -15,9 +15,10 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "backend-djangoapp-464219.rj.r.appspot.com",  # Si usas esta URL
-    "tu-backend-production.up.railway.app"  # Agrega la que te dé Railway
+    "backend-djangoapp-464219.rj.r.appspot.com",  # URL GCP (ajusta si cambia)
+    "tu-backend-production.up.railway.app",       # URL Railway, reemplaza por la real
 ]
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -61,14 +62,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-# Configuración de base de datos para Railway
-DATABASES = {
-    "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+# Configuración de base de datos:
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+if DATABASE_URL:
+    DATABASES = {
+        "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -82,19 +89,19 @@ TIME_ZONE = "America/La_Paz"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Configuración de CORS para que Flutter pueda conectarse
+# CORS para permitir conexión desde cualquier origen (Flutter app)
 CORS_ALLOW_ALL_ORIGINS = True
 
-# Configuración de JWT si usas autenticación
+# Configuración REST Framework con JWT
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-    )
+    ),
 }
 
 SIMPLE_JWT = {

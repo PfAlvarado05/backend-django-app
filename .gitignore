@@ -1,0 +1,47 @@
+# Entornos virtuales
+venv/
+env/
+ENV/
+.venv/
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de configuración de entorno local
+*.env
+*.local
+.env
+
+# Base de datos SQLite (si usas PostgreSQL no lo necesitas)
+db.sqlite3
+
+# Archivos estáticos y media generados
+staticfiles/
+media/
+
+# Archivos de logs
+*.log
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Archivos de migraciones (opcional, pero generalmente se suben)
+# migrations/
+
+# Archivo de cache de pytest
+.pytest_cache/
+
+# Archivo de configuración de coverage.py
+.coverage
+
+# Archivo de node_modules (si usas frontend con node)
+node_modules/
