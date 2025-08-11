@@ -1,0 +1,6 @@
+runtime: python311
+entrypoint: gunicorn core.wsgi --bind :$PORT
+
+env_variables:
+  DJANGO_DEBUG: "False"
+  DJANGO_SECRET_KEY: "django-insecure-f63+-3h6wme^7adbgb^17qg$&)8@b$pk6)y=_rqdynnj5s$(!v"  # Mejor usar variable de entorno seguras
