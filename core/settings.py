@@ -16,7 +16,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "backend-djangoapp-464219.rj.r.appspot.com",  # URL GCP (ajusta si cambia)
-    "tu-backend-production.up.railway.app",       # URL Railway, reemplaza por la real
+    "backend-django-app-production.up.railway.app",       # URL Railway, reemplaza por la real
 ]
 
 INSTALLED_APPS = [
