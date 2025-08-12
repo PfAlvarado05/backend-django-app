@@ -16,7 +16,7 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
     "backend-djangoapp-464219.rj.r.appspot.com",  # URL GCP (ajusta si cambia)
-    "backend-django-app-production.up.railway.app",       # URL Railway, reemplaza por la real
+    "backend-django-app-production.up.railway.app",  # URL Railway (reemplaza por la tuya)
 ]
 
 INSTALLED_APPS = [
@@ -62,7 +62,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-# Configuración de base de datos:
+# Configuración de la base de datos
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
