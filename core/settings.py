@@ -15,8 +15,7 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    "backend-djangoapp-464219.rj.r.appspot.com",  # URL GCP (ajusta si cambia)
-    "backend-django-app-production.up.railway.app",  # URL Railway (reemplaza por la tuya)
+    "backend-django-app.onrender.com",  # Render
 ]
 
 INSTALLED_APPS = [
@@ -62,8 +61,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-# Configuración de la base de datos
-
+# BASE DE DATOS
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
@@ -71,8 +69,6 @@ if DATABASE_URL:
         "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
     }
 else:
-    from pathlib import Path
-    BASE_DIR = Path(__file__).resolve().parent.parent
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -97,10 +93,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# CORS para permitir conexión desde cualquier origen (Flutter app)
 CORS_ALLOW_ALL_ORIGINS = True
 
-# Configuración REST Framework con JWT
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
