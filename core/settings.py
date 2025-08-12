@@ -63,6 +63,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 
 # Configuración de la base de datos
+
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
@@ -70,6 +71,8 @@ if DATABASE_URL:
         "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
     }
 else:
+    from pathlib import Path
+    BASE_DIR = Path(__file__).resolve().parent.parent
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
